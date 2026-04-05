@@ -1,0 +1,16 @@
+{
+  "name": "bloger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently --raw=false --prefix \"[{name}]\" -n AUTHOR,BLOGS,USER,FRONTEND -c \"blue.bold,green.bold,yellow.bold,red.bold\" \"npm run dev --prefix backend/author\" \"npm run dev --prefix backend/blogs\" \"npm run dev --prefix backend/user\" \"npm run dev --prefix frontend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
