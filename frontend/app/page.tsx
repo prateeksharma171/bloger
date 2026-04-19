@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Search, SlidersHorizontal } from "lucide-react"
 import { getAllBlogs } from "./api/blogs"
 import { isRequestCanceled } from "./api/axiosInstance"
-import BlogCard, { Blog, BlogCardSkeleton } from "./components/common/BlogCard"
+import BlogCard, { Blog } from "./components/common/BlogCard"
 import Footer from "./components/common/Footer"
 import Main from "./components/common/Main"
 import Navbar from "./components/common/Navbar"
@@ -394,7 +394,25 @@ const LandingPage = () => {
               <div className="space-y-8">
                 <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                   {isLoadingBlogs
-                    ? Array.from({ length: 6 }).map((_, index) => <BlogCardSkeleton key={index} />)
+                    ? Array.from({ length: 6 }).map((_, i) => (
+                      <div
+                        className="border rounded-sm overflow-hidden animate-pulse"
+                        style={{ backgroundColor: theme.colors.beige, borderColor: theme.colors.lightGray }}
+                      >
+                        <div className="aspect-video bg-black/10" />
+                        <div className="p-5 space-y-3">
+                          <div className="h-3 w-16 bg-black/10 rounded" />
+                          <div className="h-5 w-4/5 bg-black/10 rounded" />
+                          <div className="h-5 w-3/5 bg-black/10 rounded" />
+                          <div className="h-3 w-full bg-black/10 rounded" />
+                          <div className="h-3 w-4/5 bg-black/10 rounded" />
+                          <div className="pt-2 flex items-center gap-3">
+                            <div className="w-7 h-7 rounded-full bg-black/10" />
+                            <div className="h-3 w-24 bg-black/10 rounded" />
+                          </div>
+                        </div>
+                      </div>
+                    ))
                     : blogs.map((blog) => (
                       <BlogCard key={blog._id} blog={blog} href={`/blogs/${blog._id}`} />
                     ))}
